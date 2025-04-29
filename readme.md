@@ -35,6 +35,7 @@
 ```
 
 ---
+## 📊 Diagrama de Arquitetura
 
 ## ⚙️ Requisitos e Instalação
 
@@ -56,6 +57,9 @@ pip install pyngrok
 ```
 
 ---
+## 🛢 Banco de Dados
+### [Modelo pronto para rodar no docker](https://github.com/CAIOMSa/ChallangeSabaraHermesDB)
+### [Instalar o ODBC](https://learn.microsoft.com/pt-br/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16) e configura-lo caso necessário
 
 ## ▶️ Como iniciar o sistema
 
