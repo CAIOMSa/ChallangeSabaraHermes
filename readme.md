@@ -1,14 +1,80 @@
-FastAPI pip install fastapi
-Pyodbc pip install pyodbc
-Numpy v(1.26.4) pip install numpy 
-TensorFlow pip install tensorflow 
-Sklearn pip install scikit-learn 
-Pandas pip install pandas 
-pydantic pip install pydantic
-uvicorn pip install uvicorn
+
+# 🏥 HermesApi
+
+**Hermes** é uma API desenvolvida com FastAPI para auxiliar no atendimento clínico de pacientes, incluindo classificação de imagens médicas com IA, controle de etapas do atendimento, diagnósticos automatizados e controle de estoque.
+
+---
+
+## 📌 Funcionalidades principais
+
+- 📷 Classificação de imagens médicas com IA (modelo TensorFlow)
+- 🧾 Diagnóstico e geração de conclusões com explicações textuais (skLearn)
+- 🩺 Controle de fila de atendimento por etapas
+- 🗂 Armazenamento local de imagens médicas
+- 🛏️ Gestão de pacientes, convênios, quartos e estoque
+- 🌐 API RESTful com documentação interativa
+
+---
+
+## 📁 Estrutura de Diretórios
+
+**Hexagonal Architecture Simplificada**
+
+```
+.
+├── api/                   # Endpoints (controladores)
+├── banco_de_imagens/     # Armazenamento das imagens
+├── database/             # Conexão com SQL Server
+├── dtos/                 # Modelos de dados (DTOs - Pydantic)
+├── models/               # ORM e modelos de IA
+├── services/             # Lógica de negócio
+├── utils/                # Funções utilitárias
+├── conf.py               # Configurações globais
+├── main.py               # Entrada principal da API
+└── readme.md             # Documentação do projeto
+```
+
+---
+
+## ⚙️ Requisitos e Instalação
+
+**Versão recomendada do Python:** 3.9
+
+### 📦 Instalação dos pacotes
+
+```bash
+pip install fastapi
+pip install pyodbc
+pip install numpy==1.26.4
+pip install tensorflow
+pip install scikit-learn
+pip install pandas
+pip install pydantic
+pip install uvicorn
 pip install python-multipart
 pip install pyngrok
+```
 
+---
+
+## ▶️ Como iniciar o sistema
+
+### 🔥 Permissão no firewall (Windows)
+
+```bash
 netsh advfirewall firewall add rule name="FastAPI" dir=in action=allow protocol=TCP localport=8000
+```
+
+### 🚀 Executar o programa
+
+```bash
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-http://127.0.0.8:8000/docs
+```
+
+---
+
+## 📡 Endpoints da API
+
+Acesse a documentação interativa em:
+
+[http://127.0.0.8:8000/docs](http://127.0.0.8:8000/docs)
