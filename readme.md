@@ -36,6 +36,7 @@
 
 ---
 ## 📊 Diagrama de Arquitetura
+![HermesApi](https://github.com/user-attachments/assets/3314b761-f498-4dad-8805-2c0d653cb027)
 
 ## ⚙️ Requisitos e Instalação
 
