@@ -58,7 +58,7 @@ pip install pyngrok
 
 ---
 ## 🛢 Banco de Dados
-### [Modelo pronto para rodar no docker](https://drive.google.com/drive/folders/1mLNyrJprF_lPm-jrlBFLvafd8gqKT574?usp=drive_link)  **executar com o bash **
+### [Modelo pronto para rodar no docker](https://drive.google.com/drive/folders/1mLNyrJprF_lPm-jrlBFLvafd8gqKT574?usp=drive_link)  **executar com o bash**
 ```bash
 docker-compose up -d
 ```
