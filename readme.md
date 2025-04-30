@@ -58,7 +58,12 @@ pip install pyngrok
 
 ---
 ## 🛢 Banco de Dados
-### [Modelo pronto para rodar no docker](https://drive.google.com/drive/folders/1mLNyrJprF_lPm-jrlBFLvafd8gqKT574?usp=drive_link)
+### [Modelo pronto para rodar no docker](https://drive.google.com/drive/folders/1mLNyrJprF_lPm-jrlBFLvafd8gqKT574?usp=drive_link)  **executar com o bash 
+```bash
+docker-compose up -d
+```
+
+---
 ### [Instalar o ODBC](https://learn.microsoft.com/pt-br/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16) e configura-lo caso necessário
 
 ## ▶️ Como iniciar o sistema
