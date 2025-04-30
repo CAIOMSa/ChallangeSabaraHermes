@@ -87,3 +87,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 Acesse a documentação interativa em:
 
 [http://127.0.0.8:8000/docs](http://127.0.0.8:8000/docs)
+
+
+## 🔌 ESP32
+[ESP](https://github.com/CAIOMSa/ChallangeSabaraHermesESP)
