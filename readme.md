@@ -2,7 +2,8 @@
 # 🏥 HermesApi
 
 **Hermes** é uma API desenvolvida com FastAPI para auxiliar no atendimento clínico de pacientes, incluindo classificação de imagens médicas com IA, controle de etapas do atendimento, diagnósticos automatizados e controle de estoque.
-
+---
+Feito por: Caio Martinez, Estefany Caetano, Guilherme Leite, José Claudio, Wesley Santos
 ---
 
 ## 📌 Funcionalidades principais
