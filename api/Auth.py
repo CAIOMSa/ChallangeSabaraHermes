@@ -14,5 +14,6 @@ def Login(login:LoginResponse):
         reponse = service.login(login)
         return reponse
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"

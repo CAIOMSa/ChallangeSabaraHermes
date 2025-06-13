@@ -3,6 +3,7 @@ import os
 from services import FilaAtendimentoService as fs
 from services import EstoqueService as es
 from database.connection import Database
+from utils.Logs import registrar_erro
 
 PASTA_IMAGENS = "banco_de_imagens"
 if not os.path.exists(PASTA_IMAGENS):
@@ -41,6 +42,7 @@ def registrar(diagnostico,id_atendimento):
         fs.novoId_atendimento_paciente("IdDiagnostico",id_atendimento,id_diagnostico)
         return "sucesso"
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar diagnostico: {e}")
         return f"Erro: {str(e)}"
     finally:
@@ -82,6 +84,7 @@ def registrar_cdi(id_atendimento,cdi):
         fs.novoId_atendimento_paciente("IdCDI",id_atendimento,cdi_id)
         return cdi_id
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar as conclusoes: {e}")
         return f"Erro: {str(e)}"
     finally:
@@ -108,6 +111,7 @@ def registrar_detalheOp(id,detalhe_op):
 
         return "sucesso"
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar detalhe op: {e}")
         return f"Erro: {str(e)}"
     finally:
@@ -124,6 +128,7 @@ def registrar_resultado(id_atendimento,resultado):
         fs.novoId_atendimento_paciente("IdResultado",id_atendimento,result_id)
         return "sucesso"
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar resultado: {e}")
         return f"Erro: {str(e)}"
     finally:
@@ -145,6 +150,7 @@ def fluxo_registro_trein_ML(resultado,diagnostico):
         query = "INSERT INTO Resultado (Doenca,ObsMedica,Medicacao) VALUES (?,?,?)"
         result_id = db.executeAndReturnId(query, (resultado.doenca,resultado.obs_medica,resultado.medicacao))
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar resultado: {e}")
         return f"Erro: {str(e)}"
     finally:
@@ -178,6 +184,7 @@ def fluxo_registro_trein_ML(resultado,diagnostico):
                   diagnostico.temperatura)
         id_diagnostico = db.executeAndReturnId(query, values)
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar diagnostico: {e}")
         return f"Erro: {str(e)}"
     finally:
@@ -200,6 +207,7 @@ def fluxo_registro_trein_ML(resultado,diagnostico):
         atendimento_id = db.executeAndReturnId(query, values)
         return atendimento_id
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar atendimento do paciente: {e}")
         return None
     finally:
@@ -222,6 +230,7 @@ def coleta_base_ML():
             retorno = db.fetch_all(query)
             return retorno
         except Exception as e:
+            registrar_erro(str(e))
             print(f"Erro ao buscar os a base: {e}")
             return f"Erro: {str(e)}"
         finally:

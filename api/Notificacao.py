@@ -11,5 +11,6 @@ def Login():
         reponse = {"message" : "testando"}
         return reponse
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"

@@ -1,4 +1,5 @@
 from database.connection import Database
+from utils.Logs import registrar_erro
 
 def buscar_fila_por_cpf(cpf):
     """Busca a fila de atendimento pelo CPF"""
@@ -15,6 +16,7 @@ def buscar_fila_por_cpf(cpf):
         retorno = db.fetch_one(query, (cpf,))
         return retorno
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao buscar fila por CPF {cpf}: {e}")
         return None
     finally:
@@ -30,6 +32,7 @@ def buscar_fila_por_atendimento(id_atendimento):
         retorno = db.fetch_one(query, (id_atendimento,))
         return retorno
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao buscar fila por atendimento {id_atendimento}: {e}")
         return None
     finally:
@@ -57,6 +60,7 @@ def registrar_atendimento_paciente(atendimento):
         atendimento_id = db.executeAndReturnId(query, values)
         return atendimento_id
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar atendimento do paciente: {e}")
         return None
     finally:
@@ -72,6 +76,7 @@ def novoId_atendimento_paciente(campo,id_atendimento,id):
         atendimento_id = db.executeAndReturnId(query, values)
         return atendimento_id
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar atendimento do paciente: {e}")
         return None
     finally:
@@ -90,6 +95,7 @@ def registrar_fila(fila):
         db.execute(query, values)
         return "Atendimento registrado na fila"
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar atendimento na fila: {e}")
         return str(e)
     finally:
@@ -119,6 +125,7 @@ def atualizar_etapa_fila(id, etapa_atual):
 
         return "Etapa da fila atualizada"
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao atualizar etapa da fila: {e}")
         return str(e)
     finally:
@@ -136,6 +143,7 @@ def atualizar_status_fila(id):
 
         return "status da fila atualizada"
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao atualizar etapa da fila: {e}")
         return str(e)
     finally:

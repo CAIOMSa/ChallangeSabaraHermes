@@ -1,5 +1,5 @@
 from database.connection import Database
-
+from utils.Logs import registrar_erro
 
 def buscar_todos():
         db = None
@@ -10,6 +10,7 @@ def buscar_todos():
             retorno = db.fetch_all(query)
             return retorno
         except Exception as e:
+            registrar_erro(str(e))
             print(f"Erro ao buscar os produtos: {e}")
             return f"Erro: {str(e)}"
         finally:
@@ -25,6 +26,7 @@ def buscar_pelo_id(id):
             retorno = db.fetch_one(query, (int(id),))
             return retorno
         except Exception as e:
+            registrar_erro(str(e))
             print(f"Erro ao buscar o produto de id {id}: {e}")
             return f"Erro: {str(e)}"
         finally:
@@ -39,6 +41,7 @@ def buscar_por_nome(nome):
             retorno = db.fetch_one(query, (nome,))
             return retorno
         except Exception as e:
+            registrar_erro(str(e))
             print(f"Erro ao buscar o produto de nome {nome}: {e}")
             return f"Erro: {str(e)}"
         finally:
@@ -56,6 +59,7 @@ def atualizar_quantidade_produto(id,quant):
             retorno = db.execute(query, (quantidade,int(id)))
             return retorno
         except Exception as e:
+            registrar_erro(str(e))
             print(f"Erro ao carregar lote {id}: {e}")
             return f"Erro: {str(e)}"
         finally:
@@ -73,6 +77,7 @@ def registrar(produto):
 
         return "sucesso"
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar produto: {e}")
         return f"Erro: {str(e)}"
     finally:
@@ -91,6 +96,7 @@ def registrar_lote(lote):
 
         return "sucesso"
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar produto: {e}")
         return f"Erro: {str(e)}"
     finally:
@@ -110,12 +116,14 @@ def buscar_todos_lotes():
                 lote["data_validade"] = lote["datavalidade"]
                 lote["data_recebimento"] = lote["datarecebimento"]
             except Exception as e:
+                registrar_erro(str(e))
                 print(f"Erro ao buscar produto do lote {lote['id']}: {e}")
                 lote["produto"] = None  # Ou um dict vazio padrão
 
         return retorno
 
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao buscar os lotes: {e}")
         raise Exception(f"Erro ao buscar os lotes: {e}")  # <--- AQUI
 

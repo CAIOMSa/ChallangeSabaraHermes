@@ -14,6 +14,7 @@ def todos_pessoas():
         pessoas = service.buscar_todos()
         return pessoas
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -24,6 +25,7 @@ def busca_pessoa_cpf(cpf: str):
         pessoa = service.buscar_por_cpf(cpf)
         return pessoa
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -35,6 +37,7 @@ def registrar_nova_pessoa(pessoa: Pessoa):
         id = service.registrar(pessoa)
         return {"id": id}
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -45,6 +48,7 @@ def registrar_novo_convenio(convenio: Convenio):
         service.registrar_convenio(convenio)
         return {"mensagem": f"convenio registrado."}
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 @pessoas_route.get("/convenio",response_model=List[Convenio])
@@ -57,6 +61,7 @@ def buscar_todos_convenios():
         print(convenios)
         return convenios
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -67,5 +72,6 @@ def registrar_nova_pessoa(pessoa_emergencia: PessoaEmergencia):
         service.registrar_relacao(pessoa_emergencia)
         return {"mensagem": f"relação registrada."}
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"

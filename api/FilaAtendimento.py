@@ -15,6 +15,7 @@ def buscar_fila_por_cpf(cpf: str):
             raise HTTPException(status_code=404, detail="Paciente não encontrado na fila")
         return fila
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro ao buscar fila por CPF: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -27,6 +28,7 @@ def buscar_fila_por_atendimento(id_atendimento: int):
             raise HTTPException(status_code=404, detail="Atendimento não encontrado na fila")
         return fila
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro ao buscar fila por ID do atendimento: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -37,6 +39,7 @@ def registrar_fila(fila: FilaAtendimentoResponse):
         fila_service.registrar_fila(fila)
         return {"message": "Atendimento registrado e adicionado à fila com sucesso"}
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro ao registrar atendimento na fila: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -47,6 +50,7 @@ def atualizar_etapa_fila(id: int, etapa_atual: str):
         fila_service.atualizar_etapa_fila(id, etapa_atual)
         return {"message": "Etapa da fila atualizada com sucesso"}
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro ao atualizar etapa da fila: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -57,6 +61,7 @@ def atualizar_status(id: int):
         fila_service.atualizar_status_fila(id)
         return {"message": "Etapa da fila atualizada com sucesso"}
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro ao atualizar etapa da fila: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -67,5 +72,6 @@ def atualizar_status(etapaatual: str):
         fila_service.buscar_na_fila(etapaatual)
         return {"message": "Etapa da fila atualizada com sucesso"}
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro ao atualizar etapa da fila: {e}")
         raise HTTPException(status_code=500, detail=str(e))

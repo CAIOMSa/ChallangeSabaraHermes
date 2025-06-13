@@ -14,6 +14,7 @@ def todos_produtos():
         produtos = service.buscar_todos()
         return produtos
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -24,6 +25,7 @@ def busca_produto_nome(nome: str):
         produto = service.buscar_por_nome(nome)
         return produto
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -35,6 +37,7 @@ def registrar_novo_produto(produto: Produto):
         service.registrar(produto)
         return {"mensagem": f"produto {produto.nome} registrado."}
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -45,6 +48,7 @@ def registrar_novo_lote(lote: LoteEntrada):
         service.registrar_lote(lote)
         return {"mensagem": f"lote registrado."}
     except Exception as e:
+       registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -58,5 +62,6 @@ async def buscar_historico_de_lote():
             t.append(adaptar_para_modelo(Lote,lote))
         return lotes
     except Exception as e:
+       registrar_erro(str(e))
             print(f"Erro ao adaptar lote {lote}: {str(e)}")
 

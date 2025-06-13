@@ -1,7 +1,7 @@
 from dtos.Pessoa.Pessoa import Pessoa, Convenio
 from dtos.Pessoa.PessoaView import PessoaView
 from database.connection import Database
-
+from utils.Logs import registrar_erro
 def buscar_todos():
     """Busca todas as pessoas com seus detalhes."""
     db = Database()
@@ -118,6 +118,7 @@ def registrar_relacao(pessoa_emergencia):
 
         return "sucesso"
     except Exception as e:
+        registrar_erro(str(e))
         print(f"Erro ao registrar produto: {e}")
         return f"Erro: {str(e)}"
     finally:
