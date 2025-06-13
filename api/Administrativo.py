@@ -4,6 +4,7 @@ from typing import List
 import services.AdministrativoService as service
 from dtos.Usuario.Usuario import Usuario,TipoAcesso,Page
 from dtos.Usuario.UsuarioView import UsuarioView,TipoAcessoView
+from utils.Logs import registrar_erro
 
 adm_route = APIRouter()
 
@@ -14,7 +15,7 @@ def todos_usuarios():
         usuarios = service.buscar_todos()
         return usuarios
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -25,7 +26,7 @@ def registrar_novo_usuario(usuario: Usuario):
         service.registrar(usuario)
         return {"mensagem": f"pessoa: {usuario.nome} registrada."}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -37,7 +38,7 @@ def todos_cargos_acesso():
         tipo_acesso = service.buscar_todos_tipo_acesso()
         return tipo_acesso
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -48,7 +49,7 @@ def registrar_novo_acesso(tipo_acesso: TipoAcesso):
         service.registrar_acesso(tipo_acesso)
         return {"mensagem": f"acesso: {tipo_acesso.nome} registrado."}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -60,7 +61,7 @@ def todas_paginas():
         pages = service.buscar_todos_pages()
         return pages
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -71,7 +72,7 @@ def registrar_nova_pagina(page: Page):
         service.registrar_pagina(page)
         return {"mensagem": f"acesso: {page.nome} registrado."}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -82,7 +83,7 @@ def registrar_usuario_acesso(id_usuario: int,id_acesso:int):
         service.registrar_usuario_acesso(id_usuario,id_acesso)
         return {"mensagem": f"acesso designado."}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"
 
@@ -93,6 +94,6 @@ def registrar_pagina_acesso(id_pagina: int,id_acesso:int):
         service.registrar_pagina_acesso(id_pagina,id_acesso)
         return {"mensagem": f"pagina adicionada ao conjunto de acesso."}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"

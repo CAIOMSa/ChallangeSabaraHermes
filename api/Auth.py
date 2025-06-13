@@ -4,7 +4,7 @@ from typing import List
 import services.AdministrativoService as service
 from dtos.Usuario.Usuario import Usuario,TipoAcesso,Page,LoginResponse
 from dtos.Usuario.UsuarioView import UsuarioView,TipoAcessoView
-
+from utils.Logs import registrar_erro
 auth_route = APIRouter()
 
 @auth_route.post("/login")
@@ -14,6 +14,6 @@ def Login(login:LoginResponse):
         reponse = service.login(login)
         return reponse
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"

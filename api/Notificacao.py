@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException # type: ignore
 from pydantic import BaseModel # type: ignore
 from typing import List
+from utils.Logs import registrar_erro
 
 notificacao_route = APIRouter()
 
@@ -11,6 +12,6 @@ def Login():
         reponse = {"message" : "testando"}
         return reponse
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         return f"Erro: {str(e)}"

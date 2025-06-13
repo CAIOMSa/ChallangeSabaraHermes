@@ -6,6 +6,7 @@ from  dtos.Diagnostico.DiagnosticoView import DiagnosticoView
 from dtos.Resultado.Resultado import Resultado,DetalhesOp
 from dtos.Resultado.ResultadorResponse import AtendimentoPacienteResponseML
 import services.DiagnosticosService as service
+from utils.Logs import registrar_erro
 
 diagnostico_route = APIRouter()
 
@@ -16,7 +17,7 @@ def diagnostico_paciente(id: int):
         diagnostico = service.buscar_por_Id(id)
         return diagnostico
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -27,7 +28,7 @@ def atualizar_diagnostico(id: int,diagnostico: Diagnostico):
         service.registrar(diagnostico,id)
         return {"mensagem": "Diagnóstico atualizado com sucesso!", "id_diagnostico": id}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -38,7 +39,7 @@ def atualizar_diagnostico(id: int,diagnostico: Diagnostico):
         service.atualizar(id,diagnostico)
         return {"mensagem": "Diagnóstico atualizado com sucesso!", "id_diagnostico": id}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -49,7 +50,7 @@ def registrar_resultado(id: int,resultado: Resultado):
         service.registrar_resultado(resultado,id)
         return {"mensagem": "Diagnóstico atualizado com sucesso!", "id_diagnostico": id}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -64,7 +65,7 @@ async def registrar_cdi_img(imagem: UploadFile = File(...)):
         caminho_imagem = service.salvar_cdi(imagem, imagem.filename)
         return {"mensagem": "Imagem registrada com sucesso!", "caminho": caminho_imagem, "nome": imagem.filename}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -77,7 +78,7 @@ async def registrar_cdi(id:int,cdi:CDI):
         id_cdi = service.registrar_cdi(id,cdi)
         return {"mensagem": "Registrado com sucesso!", "id": id_cdi}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -89,7 +90,7 @@ async def analisar_cdi(imagem: UploadFile = File(...)):
     try:
         print("a")
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -102,7 +103,7 @@ def registrar_detalheOp(id: int,detalhe_op: DetalhesOp):
         service.registrar_detalheOp(id, detalhe_op)
         return {"mensagem": "realização médica registrada com sucesso"}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -115,7 +116,7 @@ async def registrar_trein_ml_agent(grande_base: List[AtendimentoPacienteResponse
         service.registrar_trein_ml_agent(grande_base)
         return {"mensagem": "Registrado com sucesso!"}
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -128,6 +129,6 @@ async def envia_para_analise(diagnostico: Diagnostico):
         resultados = service.analise_modelo_d(diagnostico)
         return resultados
     except Exception as e:
-       registrar_erro(str(e))
+        registrar_erro(str(e))
         print(f"Erro: {e}")
         raise HTTPException(status_code=500, detail=str(e))
